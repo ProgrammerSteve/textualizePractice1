@@ -12,9 +12,9 @@ class Stopwatch(Static):
     """Custom stopwatch widget."""
     def compose(self):
         """What subwidgets go in the widget"""
-        yield Button("Start", variant="success")
-        yield Button("Stop",variant="error")
-        yield Button("Reset")
+        yield Button("Start", variant="success", id="start")
+        yield Button("Stop",variant="error",id="stop")
+        yield Button("Reset",id="reset")
         yield TimeDisplay("00:00:00.00")
 
 class StopwatchApp(App):
@@ -28,7 +28,7 @@ class StopwatchApp(App):
     #     layout: horizontal;
     # }
     # """
-    CSS_PATH="./stopwatch.css"
+    CSS_PATH="./stopwatch.tcss"
 
     def compose(self):
         """What widgets is this app composed of?"""

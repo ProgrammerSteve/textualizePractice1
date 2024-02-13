@@ -1,3 +1,4 @@
+from textual import on
 from textual.app import App
 from textual.widgets import Footer, Header, Button, Static
 from textual.containers import ScrollableContainer
@@ -16,6 +17,16 @@ class Stopwatch(Static):
         yield Button("Stop",variant="error",id="stop")
         yield Button("Reset",id="reset")
         yield TimeDisplay("00:00:00.00")
+    
+    # @on is a decorator that takes Button.Pressed as an input to handle that event
+    @on(Button.Pressed, "#start")
+    def start_stopwatch(self):
+        self.add_class("started")
+        
+    @on(Button.Pressed, "#stop")
+    def stop_stopwatch(self):
+        self.remove_class("started")
+        
 
 class StopwatchApp(App):
     BINDINGS = [
@@ -35,7 +46,7 @@ class StopwatchApp(App):
         yield Header(show_clock=True)
         yield Footer()
         with ScrollableContainer(id= "stopwatches"):
-            yield Stopwatch()
+            yield Stopwatch(classes="started")
             yield Stopwatch()
             yield Stopwatch()
         # yield ScrollableContainer(

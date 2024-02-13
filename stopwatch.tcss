@@ -23,3 +23,10 @@ TimeDisplay{
 #reset {
     dock:right;
 }
+
+.started #start{
+    display:none;
+}
+.started #stop{
+    display:block;
+}
